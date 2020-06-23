@@ -58,6 +58,7 @@
 								<div id="tab1" class="tab-pane active">
 									<div class="products-slick" data-nav="#slick-nav-1">
                                     <?php $d=$this->db->query("SELECT * FROM barang")->result();?>
+                                
                                     <?php foreach($d as $b):?>    
                                     <!-- product -->
 										<div class="product">
@@ -82,7 +83,8 @@
 												<div class="product-btns">
 													<!-- <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
 													<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button> -->
-													<a href="#quickview<?=$b->id?>" id="<?=$b->id?>"  data-toggle="modal" class="add-to-cart-btn"> <span class="fa fa-eye"></span></a>
+													<a href="#quickview<?=$b->id?>" id="<?=$b->id?>"  data-toggle="modal" class="btn btn-success"> <span class="fa fa-eye"> Detail</span></a>
+													<a href="#quick<?=$b->id?>" id="<?=$b->id?>"  data-toggle="modal" class="btn btn-primary"> <span class="fa fa-eye"> Simulasi Kredit</span></a>
 												</div>
 											</div>
 											<div class="add-to-cart">
@@ -136,6 +138,46 @@
               <!-- <div class="modal-footer">
                 <a href="<?=base_url('web/spek/')?>" class="btn btn-danger btn-md btn-flat">Lihat spesifikasi</a>
                 </div> -->
+            </div>
+          </div>
+        </div>
+  <?php endforeach;?>
+    <!-- ============ MODAL EDIT =============== -->
+	<?php
+	
+        foreach($d as $b):?>
+             <div class="modal fade" id="quick<?=$b->id?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">&nbsp;Simulasi Kredit</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+              </div>
+              <div class="modal-body" id="IsiModal" >
+			  	<input type="hidden" name="kode_barang" id="kode_barang" value="<?=$b->kode_barang?>">
+               <table class="table table-bordered table-striped">
+					<thead>
+						<tr>
+							<th>No</th>
+							<th>Tenor</th>
+							<th>Angsuran</th>
+						</tr>
+					</thead> 
+					<tbody>
+					<?php $no=1;$data_skema=$this->db->query("select * from detail_skema where kode_barang in('$b->kode_barang') order by tenor ASC")->result();?>
+					<?php foreach($data_skema as $skema):?>
+					<tr>
+						<td width="20px;"><?=$no++?></td>
+						<td><?=$skema->tenor?> bulan</td>
+						<td>Rp. <?=number_format($skema->angsuran,0,'.',',')?></td>
+					</tr>
+					<?php endforeach;?>
+					</tbody>  
+			   </table>
+              </div>
+              <div class="modal-footer">
+              <a style="padding-top:5px;" href="<?php echo base_url('toko/add_to_kredit/'.$b->kode_barang)?>" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-heart-o"></i> Ajukan Kredit</a> 
+                </div>
             </div>
           </div>
         </div>

@@ -78,6 +78,19 @@ class Prospek extends MY_Controller {
         }
     }
 
+    public function ajukan($id_prospek)
+    {
+        $this->db->query("update prospek set status='baru' where id_prospek ='$id_prospek'");
+        redirect('toko/index','refresh');
+        
+    }
+
+    public function hapus($id_prospek)
+    {
+        $this->db->query("delete from prospek where id_prospek ='$id_prospek'");
+        redirect('toko/index','refresh');
+    }
+
     public function create() 
     {
         $data = array(
