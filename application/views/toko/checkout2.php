@@ -86,7 +86,7 @@
                             <select name="layanan" id="layanan" class="form-control">
                                 <option value=""></option>
                             </select>
-                                <br> Biaya Pengiriman<input type="text" class="form-control" readonly placeholder="Rp.0" id="ongkir"></div>
+                                <br> Biaya Pengiriman<input type="text" class="form-control" name="ongkir" readonly placeholder="Rp.0" id="ongkir"></div>
 							</div>
 							
 						

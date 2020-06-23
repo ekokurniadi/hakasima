@@ -293,6 +293,7 @@ class Toko extends MY_Controller {
         $ekspedisi=$this->input->post('kurir');
         $layanan=$this->input->post('layanan');
         $status='baru';
+        $pengiriman=$this->input->post('ongkir');
         $data=array(
             'kode_pembelian'=>$kode_pembelian,
             'tanggal'=>$tanggal,
@@ -304,6 +305,7 @@ class Toko extends MY_Controller {
             'ekspedisi'=>$ekspedisi,
             'layanan'=>$layanan,
             'status'=>$status,
+            'pengiriman'=>$pengiriman,
         );
         $this->db->insert('pembelian',$data);
         $this->db->query("update detail_pembelian set status='proses' where kode_pembelian='$kode_pembelian'");

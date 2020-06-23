@@ -304,7 +304,7 @@
 						<li><a href="<?php echo base_url('toko/tentang_kami')?>">Tentang Kami</a></li>
 						<!-- <li><a href="<?php echo base_url('toko/kontak_kami')?>">Kontak Kami</a></li> -->
 							<?php $id_cus=$_SESSION['customer_id']; 
-							$not=$this->db->query("SELECT count(*) as notif from prospek where status='NOT DEAL' or status='baru' and id_customer='$id_cus'")->row_array()?>
+							$not=$this->db->query("SELECT count(*) as notif from prospek where id_customer='$id_cus' and status='NOT DEAL'")->row_array()?>
 						<li><a href="<?php echo base_url('toko/pengajuan_kredit')?>"><span class="badge bg-red"><?=$not['notif']?></span> Pengajuan Kredit</a></li>
 						<li><a href="<?php echo base_url('toko/bayar')?>">Pembayaran Angsuran</a></li>
 					</ul>
