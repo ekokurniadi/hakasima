@@ -252,10 +252,10 @@ class Toko extends MY_Controller {
     //     echo 'sedang di develop';
     // }
    
-    public function kontak_kami()
-    {
-        echo 'sedang di develop';
-    }
+    // public function kontak_kami()
+    // {
+    //     echo 'sedang di develop';
+    // }
 
     public function pengajuan_kredit()
     {
@@ -266,6 +266,19 @@ class Toko extends MY_Controller {
        );
        $this->load->view('toko/header');
        $this->load->view('toko/form_kredit',$data);
+       $this->load->view('toko/footer');
+       
+    }
+
+    public function bayar()
+    {
+       $cust_id=$_SESSION['customer_id'];
+       $data_kredit=$this->db->query("SELECT a.id_prospek,a.kode_barang,b.* from prospek a join tagihan_konsumen b on a.id_prospek=b.id_prospek where b.id_customer='$cust_id'")->result();
+       $data=array(
+           'detail'=>$data_kredit,
+       );
+       $this->load->view('toko/header');
+       $this->load->view('toko/bayar_angsuran',$data);
        $this->load->view('toko/footer');
        
     }
