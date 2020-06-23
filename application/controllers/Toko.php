@@ -183,10 +183,8 @@ class Toko extends MY_Controller {
             'total'=>$total
         );
         $this->db->insert('detail_pembelian',$data2);
-        $data['kode_provinsi']=$this->Ongkir_model->get_provinsi();
-        $this->load->view('toko/header');
-        $this->load->view('toko/checkout',$data);
-        $this->load->view('toko/footer');
+        redirect('toko/index','refresh');
+       
         
     }
 

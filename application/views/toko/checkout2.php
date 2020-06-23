@@ -111,7 +111,7 @@
                             <div class="order-col">Alamat Pengiriman<br>
                                 <textarea name="alamat" id="alamat" cols="50" rows="5"></textarea>
                             </div>
-						<input type="text" name="id_trx" id="id_trx" value="<?=$this->uri->segment(3)?>">
+						<input type="hidden" name="id_trx" id="id_trx" value="<?=$this->uri->segment(3)?>">
                         <input type="hidden" name="pengguna" id="pengguna" value="<?=$_SESSION['customer_id']?>">
                         <!-- <a href="#" class="primary-btn order-submit">Order</a> -->
                         <button class="primary-btn order-submit" type="submit">Order</button>
